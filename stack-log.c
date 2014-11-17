@@ -10,7 +10,7 @@
 static int stack_log;
 
 void __attribute__ ((constructor)) stack_log_begin(void) {
-	stack_log = open("stack.log", O_WRONLY | O_CREAT | O_TRUNC);
+	stack_log = open("stack.log", O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (stack_log == -1)
 		stack_log = 0;
 }
