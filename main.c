@@ -39,6 +39,8 @@ const char *stack_log_event_type_name(stack_log_event_t type) {
 		return "enter";
 	case STACK_LOG_EVENT_EXIT:
 		return "exit";
+	default:
+		assert(0);
 	}
 }
 
