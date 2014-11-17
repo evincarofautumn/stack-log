@@ -5,8 +5,8 @@
 typedef uint64_t stack_log_cell_t;
 
 typedef struct {
-	stack_log_cell_t timestamp, event_type, from, to;
-} stack_log_entry_t;
+	stack_log_cell_t seconds, microseconds, type, from, to;
+} __attribute__((packed)) stack_log_entry_t;
 
 typedef enum {
 	STACK_LOG_EVENT_ENTER = 0,

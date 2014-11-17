@@ -46,9 +46,9 @@ const char *stack_log_event_type_name(stack_log_event_t type) {
 
 void stack_log_print_entry(stack_log_entry_t *entry) {
 	printf(
-		"%"PRId64"\t%s\t%p\t%p",
-		entry->timestamp,
-		stack_log_event_type_name(entry->event_type),
+		"%.6f\t%s\t%p\t%p\n",
+		(double)entry->seconds + (double)entry->microseconds / 10e6,
+		stack_log_event_type_name(entry->type),
 		(void *)entry->from,
 		(void *)entry->to);
 }
