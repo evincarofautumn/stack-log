@@ -1,5 +1,6 @@
 #include "stack-log.h"
 
+#include <assert.h>
 #include <errno.h>
 #include <fcntl.h>
 #include <inttypes.h>
@@ -17,7 +18,7 @@ int main(int argc, char **argv) {
 		return EXIT_FAILURE;
 	}
 	const char *filename = argc == 2 ? argv[1] : "stack.log";
-	int log = open("stack.log", O_RDONLY);
+	int log = open(filename, O_RDONLY);
 	if (log == -1) {
 		fprintf(stderr, "cannot open log: %s\n", strerror(errno));
 		return EXIT_FAILURE;
