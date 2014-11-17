@@ -24,8 +24,12 @@ int main(int argc, char **argv) {
 		return EXIT_FAILURE;
 	}
 	stack_log_entry_t entry;
-	while (read(log, &entry, sizeof(entry)))
+	while (1) {
+		int status = read(log, (void *)&entry, sizeof(entry));
+		if (status != sizeof(entry))
+			break;
 		stack_log_print_entry(&entry);
+	}
 	return EXIT_SUCCESS;
 }
 
