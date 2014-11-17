@@ -10,10 +10,10 @@ clean :
 library : libstacklog.a
 
 libstacklog.a : stack-log.c stack-log.h
-	$(CC) -c stack-log.c -I. -o stack-log.o
+	$(CC) -c stack-log.c -I. -o stack-log.o -fPIC -g
 	$(AR) -qc libstacklog.a stack-log.o
 
 executable : stack-log
 
 stack-log : main.c stack-log.h
-	$(CC) main.c -I. -o stack-log
+	$(CC) main.c -I. -o stack-log -g
