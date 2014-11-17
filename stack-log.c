@@ -32,7 +32,11 @@ void __cyg_profile_func_enter(void *callee, void *caller) {
 		(stack_log_cell_t)caller,
 		(stack_log_cell_t)callee
 	};
-	write(stack_log, (const void *)&entry, sizeof(entry));
+	ssize_t status = write(stack_log, (const void *)&entry, sizeof(entry));
+	if (status == -1) {
+		close(stack_log);
+		stack_log = 0;
+	}
 }
  
 void __cyg_profile_func_exit(void *callee, void *caller) {
@@ -47,5 +51,9 @@ void __cyg_profile_func_exit(void *callee, void *caller) {
 		(stack_log_cell_t)callee,
 		(stack_log_cell_t)caller
 	};
-	write(stack_log, (const void *)&entry, sizeof(entry));
+	ssize_t status = write(stack_log, (const void *)&entry, sizeof(entry));
+	if (status == -1) {
+		close(stack_log);
+		stack_log = 0;
+	}
 }
