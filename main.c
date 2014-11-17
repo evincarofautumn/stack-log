@@ -33,8 +33,8 @@ int main(int argc, char **argv) {
 	return EXIT_SUCCESS;
 }
 
-const char *stack_log_event_type_name(stack_log_event_t event_type) {
-	switch (event_type) {
+const char *stack_log_event_type_name(stack_log_event_t type) {
+	switch (type) {
 	case STACK_LOG_EVENT_ENTER:
 		return "enter";
 	case STACK_LOG_EVENT_EXIT:
