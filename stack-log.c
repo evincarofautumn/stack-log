@@ -28,6 +28,7 @@ void __cyg_profile_func_enter(void *callee, void *caller) {
 	const stack_log_entry_t entry = {
 		(stack_log_cell_t)time.tv_sec,
 		(stack_log_cell_t)time.tv_usec,
+		(stack_log_cell_t)pthread_self(),
 		STACK_LOG_EVENT_ENTER,
 		(stack_log_cell_t)caller,
 		(stack_log_cell_t)callee
@@ -38,7 +39,7 @@ void __cyg_profile_func_enter(void *callee, void *caller) {
 		stack_log = 0;
 	}
 }
- 
+
 void __cyg_profile_func_exit(void *callee, void *caller) {
 	if (!stack_log)
 		return;
@@ -47,6 +48,7 @@ void __cyg_profile_func_exit(void *callee, void *caller) {
 	const stack_log_entry_t entry = {
 		(stack_log_cell_t)time.tv_sec,
 		(stack_log_cell_t)time.tv_usec,
+		(stack_log_cell_t)pthread_self(),
 		STACK_LOG_EVENT_EXIT,
 		(stack_log_cell_t)callee,
 		(stack_log_cell_t)caller
